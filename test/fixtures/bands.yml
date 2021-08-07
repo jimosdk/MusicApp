@@ -11,9 +11,9 @@
 #
 #  index_bands_on_name  (name)
 #
-class Band < ApplicationRecord
-    validates :name,presence:true
 
-    has_many :albums,
-        dependent: :destroy
-end
+one:
+  name: MyString
+
+two:
+  name: MyString

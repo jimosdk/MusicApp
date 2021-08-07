@@ -11,9 +11,10 @@
 #
 #  index_bands_on_name  (name)
 #
-class Band < ApplicationRecord
-    validates :name,presence:true
+require 'test_helper'
 
-    has_many :albums,
-        dependent: :destroy
+class BandTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
