@@ -1,0 +1,10 @@
+<h1><%= @band.name.capitalize %></h1>
+
+<%= link_to 'Edit', edit_band_url %>
+
+<br>
+
+<%= button_to 'Delete', band_url(@band), method: :delete %>
+<br>
+
+<%= link_to 'Back', bands_url %>

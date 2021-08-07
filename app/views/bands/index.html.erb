@@ -1,0 +1,7 @@
+<ul>
+    <% Band.all.each do |band| %>
+        <li><%= link_to band.name.capitalize ,band_url(band) %></li>
+    <% end %>
+</ul>
+
+<%= link_to 'New Band', new_band_url %>
