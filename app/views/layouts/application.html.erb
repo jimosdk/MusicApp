@@ -10,6 +10,21 @@
   </head>
 
   <body>
+  <nav>
+    <h1><%= link_to 'Music App', bands_url %></h1>
+    <% if current_user %>
+    <%= current_user.name %>
+    <%= button_to 'Logout', session_url ,method: :delete %>
+    <% else %>
+    <%= link_to 'Sign in', new_session_url %>
+    /
+    <%= link_to 'Sign up', new_user_url  %>
+    <% end %>
+  </nav>
+
+  <br>
+  <br>
+
     <%= yield %>
   </body>
 </html>
