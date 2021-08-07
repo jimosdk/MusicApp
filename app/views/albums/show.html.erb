@@ -1,0 +1,37 @@
+<h2><%=@album.title.capitalize%></h2>
+
+<table>
+    <caption>album details</caption>
+    <tr>
+        <th>Title</th>
+        <td><%= @album.title.capitalize %></td>
+    </tr>
+    <tr>
+        <th>Year</th>
+        <td><%= @album.year %></td>
+    </tr>
+    <tr>
+        <th>Band</th>
+        <td><%= @album.band.name.capitalize %></td>
+    </tr>
+    <tr>
+        <th>Recorded</th>
+        <% if @album.live %>
+        <td>Live</td>
+        <%else%>
+        <td>In Studio</td>
+        <% end %>
+    </tr>
+</table>
+
+<br>
+
+<%= link_to 'Edit Album', edit_album_url(@album) %>
+
+<br>
+
+<%= button_to 'Delete Album', album_url(@album) ,method: :delete %>
+
+<br>
+
+<%= link_to 'Back', band_url(@album.band) %>
