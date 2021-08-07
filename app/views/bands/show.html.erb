@@ -1,5 +1,19 @@
 <h1><%= @band.name.capitalize %></h1>
 
+<% unless @band.albums.empty? %>
+<h2>Albums</h2>
+<ul>
+   <% @band.albums.each do |album| %>
+    <li><%= link_to album.title.capitalize, album_url(album) %></li>
+   <% end %>
+</ul>
+<% end %>
+<br>
+
+<%= link_to 'New Album', new_band_album_url(@band) %>
+
+<br>
+
 <%= link_to 'Edit', edit_band_url %>
 
 <br>
