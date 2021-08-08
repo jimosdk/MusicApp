@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+    before_action :require_current_user
+
     def new
         @album = Album.new
         @album.band_id = params[:band_id]
