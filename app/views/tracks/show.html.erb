@@ -24,9 +24,13 @@
     </tr>
     <tr>
         <th>Lyrics</th>
-        <td><%= @track.lyrics %></td>
+        <td><%= ugly_lyrics(@track.lyrics) %></td>
     </tr>
 </table>
+<br>
+<br>
+
+ <%= render 'notes/form' ,track: @track%>
 
 <br>
 
