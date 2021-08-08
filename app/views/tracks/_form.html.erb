@@ -1,0 +1,58 @@
+<% method = @track.persisted? ? 'patch' : 'post' %>
+<% action = method == 'post' ? tracks_url :  track_url(@track)%>
+<% header = method == 'post' ? 'Enter new track' : "Edit #{@track.title.capitalize}" %>
+<% submit = method == 'post' ? 'Submit' : 'Finish' %>
+<% back_action = method == 'post' ? album_url(@track.album) : track_url(@track) %>
+<% back_value = method == 'post' ? "Back To #{@track.album.title} Show Page" : "Back To #{@track.title.capitalize} Show Page" %>
+
+<h1><%= header %></h1>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= action %>" method="post">
+    <%= auth_token %>
+    <% if method == 'patch' %>
+    <input type="hidden" name="_method" value="patch">
+    <% end %>
+
+    <label for="title">Title</label>
+    <input type="text" name="track[title]" id="title" value="<%= @track.title %>">
+
+    <br>
+
+    <label for="ord">Track no.</label>
+    <input type="text" name="track[ord]" id="ord" value="<%=@track.ord %>">
+
+    <br>
+
+    <input type="radio" name="track[bonus]" id="regular" value="false" <%= 'checked' if !@track.bonus %>>
+    <label for="regular">Regular</label>
+
+    <input type="radio" name="track[bonus]" id="bonus" value="true" <%= 'checked' if @track.bonus %>>
+    <label for="bonus">Bonus</label>
+
+    <br>
+
+    <label for="album">album</label>
+    <select name="track[album_id]" id="album">
+        <% unless  @track %>
+        <option disabled selected></option>
+        <% end %>
+        <% Album.all.each do |album| %>
+        <option value="<%= album.id %>" <%= 'selected' if @track.album_id == album.id %>><%= album.title.capitalize %></option>
+        <% end %>
+    </select>
+
+    <br>
+
+    <label for="lyrics">Lyrics</label>
+    <textarea name="track[lyrics]" id="lyrics" cols="30" rows="10"><%= 
+    @track.lyrics 
+    %></textarea>
+
+    <br>
+
+    <input type="submit" value="<%= submit%>">
+</form>
+
+<%= link_to back_value, back_action %>

@@ -1,0 +1,41 @@
+<h1><%= @track.title.capitalize %></h1>
+
+<table>
+    <caption>Track details</caption>
+    <tr>
+        <th>Title</th>
+        <td><%= @track.title %></td>
+    </tr>
+    <tr>
+        <th>Track no.</th>
+        <td><%= @track.ord %></td>
+    </tr>
+    <tr>
+        <th>Album</th>
+        <td><%= @track.album.title.capitalize %></td>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <% if @track.bonus %>
+        <td>Bonus</td>
+        <% else %>
+        <td>Regular</td>
+        <% end %>
+    </tr>
+    <tr>
+        <th>Lyrics</th>
+        <td><%= @track.lyrics %></td>
+    </tr>
+</table>
+
+<br>
+
+<%= link_to 'Edit Track', edit_track_url(@track) %>
+
+<br>
+
+<%= button_to 'Remove Track', track_url(@track),method: :delete %>
+
+<br>
+
+<%= link_to 'Back to album', album_url(@track.album) %>
