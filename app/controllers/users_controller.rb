@@ -10,8 +10,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            log_in!
-            redirect_to user_url(@user)
+            msg = UserMailer.authentication_mail(@user)
+            msg.deliver_now
+            flash.now[:errors] = ["Authentication mail has been sent ,please follow the link provided in the mail to complete the authentication process"]
+            render :new
         else  
             flash.now[:errors] = @user.errors.full_messages
             render :new
@@ -23,6 +25,14 @@ class UsersController < ApplicationController
         render :show
     end
 
+    def activate
+        @user = User.find_by(activation_token: params[:activation_token])
+        unless @user.activated
+            @user.toggle(:activated)
+            log_in!
+            redirect_to bands_url
+        end
+    end
 
     private
 
