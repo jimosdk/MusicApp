@@ -26,6 +26,21 @@
 
 <br>
 
+<% unless @album.tracks.empty? %>
+<h3>Tracks</h3>
+
+<ul>
+    <% @album.tracks.each do |track| %>
+    <li><%= link_to track.title, track_url(track) %></li>
+    <% end %>
+</ul>
+<% end %>
+<br>
+
+<%= link_to 'New Track', new_album_track_url(@album) %>
+
+<br>
+
 <%= link_to 'Edit Album', edit_album_url(@album) %>
 
 <br>
