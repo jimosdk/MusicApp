@@ -30,6 +30,17 @@
 
 <br>
 
+<% unless @track.notes.empty? %>
+<h3>User notes</h3>
+<ul>
+<% @track.notes.each do |note| %>
+<li><%= render 'notes/note' ,note: note%></li>
+<% end %>
+</ul>
+<% end %>
+
+<br>
+
 <%= link_to 'Edit Track', edit_track_url(@track) %>
 
 <br>
