@@ -1,0 +1,26 @@
+<% method = @band.persisted? ? 'patch' : 'post' %>
+<% action = method == 'post' ? bands_url :  band_url(@band)%>
+<% header = method == 'post' ? 'Enter new band' : "Edit #{@band.name.capitalize}" %>
+<% submit = method == 'post' ? 'Submit' : 'Finish' %>
+<% back_action = method == 'post' ? bands_url : band_url(@band) %>
+<% back_value = method == 'post' ? 'Back To Band Index Page' : "Back To #{@band.name.capitalize} Show Page" %>
+<h1><%= header %></h1>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= action %>" method="post">
+    <%= auth_token %>
+
+    <% if method == 'patch' %>
+    <input type="hidden" name="_method" value="patch">
+    <% end %>
+
+    <label for="name">Band Name</label>
+    <input type="text" name="band[name]" id="name" value= "<%= @band.name %>">
+
+    <br>
+
+    <input type="submit" value=<%= submit %>>
+</form>
+
+<%= link_to back_value, back_action %>

@@ -1,3 +1,5 @@
+<h1>Bands</h1>
+
 <ul>
     <% Band.all.each do |band| %>
         <li><%= link_to band.name.capitalize ,band_url(band) %></li>

@@ -1,18 +1,4 @@
-<h1>Enter new band</h1>
 
-<%= render 'shared/errors' %>
 
-<form action="<%= bands_url %>" method="post">
-    <%= auth_token %>
 
-    <label for="name">Band Name</label>
-    <input type="text" name="band[name]" id="name">
-
-    <br>
-
-    <input type="submit" value="Submit">
-</form>
-
-<br>
-
-<%= link_to 'Back', bands_url %>
+<%= render 'form' %>
