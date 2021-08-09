@@ -29,6 +29,7 @@ class UsersController < ApplicationController
         @user = User.find_by(activation_token: params[:activation_token])
         unless @user.activated
             @user.toggle(:activated)
+            @user.save
             log_in!
             redirect_to bands_url
         end

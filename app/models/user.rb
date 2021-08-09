@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  activated        :boolean          default(FALSE), not null
 #  activation_token :string           not null
+#  admin            :boolean          default(FALSE)
 #  email            :string           not null
 #  name             :string           not null
 #  password_digest  :string           not null

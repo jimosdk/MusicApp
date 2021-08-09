@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
     before_action :require_current_user ,only: [:create]
-    before_action :require_author ,only: [:destroy]
+    before_action :require_author_or_admin ,only: [:destroy]
 
     def create
         @note = Note.new(note_params)
@@ -22,9 +22,9 @@ class NotesController < ApplicationController
         params.require(:note).permit(:track_id,:description)
     end
 
-    def require_author 
+    def require_author_or_admin
         note = Note.find_by(id: params[:id])
-        render plain: "Note can only be deleted by author",status: :forbidden unless current_user && current_user.id == note.user_id
+        render plain: "Note can only be deleted by author or admin",status: :forbidden unless current_user && current_user.id == note.user_id || admin?
     end
 
 end

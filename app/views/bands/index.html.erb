@@ -6,4 +6,6 @@
     <% end %>
 </ul>
 
+<% if admin? %>
 <%= link_to 'New Band', new_band_url %>
+<% end %>

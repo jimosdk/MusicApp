@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
     before_action :require_current_user
+    before_action :require_admin,except: [:show,:index]
 
     def index 
         render :index

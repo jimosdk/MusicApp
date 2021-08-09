@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
     before_action :require_current_user
+    before_action :require_admin,except: [:show]
 
     def new
         @album = Album.new

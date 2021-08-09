@@ -44,7 +44,7 @@
 <% end %>
 
 <br>
-
+<% if admin? %>
 <%= link_to 'Edit Track', edit_track_url(@track) %>
 
 <br>
@@ -52,5 +52,5 @@
 <%= button_to 'Remove Track', track_url(@track),method: :delete %>
 
 <br>
-
+<% end %>
 <%= link_to 'Back to album', album_url(@track.album) %>
