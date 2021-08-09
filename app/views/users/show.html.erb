@@ -9,4 +9,16 @@
         <th>email</th>
         <td><%= @user.email %></td>
     </tr>
+    <% if admin? %>
+    <tr>
+        <th>Admin priviledges</th>
+        <td>Granted</td>
+    </tr>
+    <% end %>
 </table>
+
+<br>
+
+<% if admin? %>
+<%= link_to 'Show all registered users', users_url %>
+<% end %>
