@@ -1,6 +1,20 @@
 class UsersController < ApplicationController
     before_action :require_no_current_user,only:[:new,:create]
     before_action :require_current_user,only:[:show]
+    before_action :require_admin,only: [:index,:admin]
+
+    def index
+        render :index
+    end
+
+    def admin 
+        user = User.find_by(id: params[:id])
+        unless user.admin
+             user.toggle(:admin) 
+             user.save
+        end
+        redirect_to users_url
+    end
 
     def new
         @user = User.new
