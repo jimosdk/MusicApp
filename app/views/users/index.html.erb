@@ -1,0 +1,18 @@
+<h1>All registered Users</h1>
+
+<ul>
+<% User.all.each do |user| %>
+    <li>
+        <p>Email: <%= user.email %>, Name: <%= user.name.capitalize %></p>
+        <% if user.admin %>
+        <p>Administrator</p>
+        <% else %>
+        <%= button_to 'Make admin', admin_user_url(user),method: :patch %>
+        <% end %>
+    </li>
+<% end %>
+</ul>
+
+<br>
+
+<%= link_to 'Back', user_url(current_user) %>
