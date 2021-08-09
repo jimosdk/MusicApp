@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
                                         params[:session][:password])
         if @user 
             log_in!
-            redirect_to user_url(@user)
+            redirect_to bands_url
         else   
             flash.now[:errors] = ['User not found']
             render :new
