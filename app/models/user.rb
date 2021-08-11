@@ -50,7 +50,7 @@ class User < ApplicationRecord
     end
 
     def ensure_session_token
-        self.session_token = User.generate_session_token
+        self.session_token ||= User.generate_session_token
     end
 
     def reset_session_token!
@@ -60,6 +60,6 @@ class User < ApplicationRecord
     end
 
     def ensure_activation_token
-        self.activation_token = User.generate_session_token
+        self.activation_token ||= User.generate_session_token
     end
 end
